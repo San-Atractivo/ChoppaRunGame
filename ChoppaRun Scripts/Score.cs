@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Utills;
 
 public class Score : MonoBehaviour {
 
@@ -45,10 +46,10 @@ public class Score : MonoBehaviour {
         for (int i = 0; i< 20; i++)
         {
             scoreview += score / 20;
-            scoretext.text = Utills.NumberToCommaText(scoreview);
+            scoretext.text = TextUtills.NumberToCommaText(scoreview);
             yield return new WaitForSeconds(0.05f);
         }
-        scoretext.text = Utills.NumberToCommaText(score);
+        scoretext.text = TextUtills.NumberToCommaText(score);
     }
 
     public void homeButton()

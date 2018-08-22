@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utills;
 
 public class GameManager : MonoBehaviour {
 
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour {
         while (true)
         {
             distance += GetGameSpeed() * (Time.deltaTime * 10);     // 시간 경과에 따라 플레이어 이동거리 추가
-            Utills.ReflashCommaText(distanceText, (int)distance, " M");    // 이동거리 변경에 따라 UI Text 변경
+            TextUtills.ReflashCommaText(distanceText, (int)distance, " M");    // 이동거리 변경에 따라 UI Text 변경
 
             if ( backgroundColorFlag != (int)(distance * 0.01)%3)   // 현재 컬러와 이동거리가 다를경우 백그라운드 색 변경
                 BackgroundColorChange();
@@ -219,6 +220,6 @@ public class GameManager : MonoBehaviour {
     public void AddScore()
     {
         score += 10;
-        Utills.ReflashCommaText(ScoreText, score);
+        TextUtills.ReflashCommaText(ScoreText, score);
     }
 }

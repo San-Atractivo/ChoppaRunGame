@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Utills;
 
 public class MainManager : MonoBehaviour {
 
@@ -51,9 +52,9 @@ public class MainManager : MonoBehaviour {
 
         // TextUI text 추가
         ReflashEnergyText();
-        Utills.ReflashCommaText(Money, money);
-        Utills.ReflashCommaText(BestScore, bestScore);
-        Utills.ReflashCommaText(BestDistance, bestDistance, " M");
+        TextUtills.ReflashCommaText(Money, money);
+        TextUtills.ReflashCommaText(BestScore, bestScore);
+        TextUtills.ReflashCommaText(BestDistance, bestDistance, " M");
 
         // 설정창 프레임표시 확인 및 적용
         initSettingMenu();
@@ -70,9 +71,9 @@ public class MainManager : MonoBehaviour {
         float sPersent = (Mathf.Round(((DATA.getData().SHILDESTAT * persent) / 0.01f)) * 0.01f);
         float mPersent = (Mathf.Round(((DATA.getData().MAGNETSTAT * persent) / 0.01f)) * 0.01f);
 
-        Utills.ReflashPersentText(Fast, fPersent, "%");
-        Utills.ReflashPersentText(Shilde, sPersent, "%");
-        Utills.ReflashPersentText(Magnet, mPersent, "%");
+        TextUtills.ReflashPersentText(Fast, fPersent, "%");
+        TextUtills.ReflashPersentText(Shilde, sPersent, "%");
+        TextUtills.ReflashPersentText(Magnet, mPersent, "%");
     }
 
 
@@ -120,7 +121,7 @@ public class MainManager : MonoBehaviour {
 
                 // 추가된 에너지만큼의 시간 추가 및 마지막 시간 저장
                 saveTime = saveTime.AddMinutes(addEnergy * 3);
-                data.ENERGYTIME = Utills.DateTimeToString(saveTime);
+                data.ENERGYTIME = TextUtills.DateTimeToString(saveTime);
 
                 // 이후 남은 시간 카운팅코르틴 시작
                 StartCoroutine(EnergyChargeText());
@@ -154,7 +155,7 @@ public class MainManager : MonoBehaviour {
                 money += 1 * i;
                 addMoney /= 10;
             }
-            Utills.ReflashCommaText(Money, money);
+            TextUtills.ReflashCommaText(Money, money);
         }
     }
 
@@ -200,12 +201,12 @@ public class MainManager : MonoBehaviour {
         {
             case 0: // 에너지 추가 버튼 클릭시
                 Plus.gameObject.SetActive(true);
-                Utills.ReflashText(PlusText, "행동력을 충전 : Money -100");
+                TextUtills.ReflashText(PlusText, "행동력을 충전 : Money -100");
                 plus = 1;
                 break;
             case 1: // 골드 추가 버튼 클릭시
                 Plus.gameObject.SetActive(true);
-                Utills.ReflashText(PlusText, "골드를 충전하시겠습니까 ? ");
+                TextUtills.ReflashText(PlusText, "골드를 충전하시겠습니까 ? ");
                 plus = 2;
                 break;
             case 2: // 확인창의 확인버튼 클릭시
@@ -326,7 +327,7 @@ public class MainManager : MonoBehaviour {
             {
                 if (DATA.getData().ENERGYTIME.Equals(""))
                 {
-                    DATA.getData().ENERGYTIME = Utills.GetNowDateTime();
+                    DATA.getData().ENERGYTIME = TextUtills.GetNowDateTime();
                 }
             }
             SceneManager.LoadScene("Game");
